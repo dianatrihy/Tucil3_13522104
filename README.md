@@ -15,7 +15,7 @@
 - Untuk mendapatkan solusi optimal dalam permainan Word Ladder, dilakukan pembangunan algoritma Uniform Cost Search (UCS), Greedy Best First Search (GBFS), dan A* sebagai algoritma pencarian rute atau route planning. Ketiga algoritma tersebut dibuat untuk membandingkan keoptimalan solusi, memori, dan waktu yang dibutuhkan. 
 
 ## Technologies Used
-- java version "20.0.2"
+- Java version "20.0.2"
 
 ## Features
 - User dapat memasukkan kata awal dan kata tujuan dalam bahasa Inggris
