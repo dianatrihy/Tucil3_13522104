@@ -12,17 +12,20 @@ import java.util.*;
 import java.util.List;
 
 public class WordLadderGUI extends JFrame implements ActionListener {
+    // atribut
     private JTextField startField, endField;
     private JTextArea resultArea;
     private JButton findButton;
     private JCheckBox ucsCheckBox, gbfsCheckBox, aStarCheckBox;
 
+    // konstruktor
     public WordLadderGUI() {
         setTitle("Word Ladder Solver");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 500);
         setLayout(new BorderLayout());
 
+        // bagian input kata
         JPanel inputPanel = new JPanel(new GridBagLayout());
         inputPanel.setBackground(new Color(255, 192, 203));
 
@@ -46,6 +49,7 @@ public class WordLadderGUI extends JFrame implements ActionListener {
 
         gbc.gridy++;
 
+        // bagian pilih algoritma
         JLabel labelAlgoritma = new JLabel("Pilih algoritma yang akan dijalankan:");
         labelAlgoritma.setFont(labelFont);
         inputPanel.add(labelAlgoritma, gbc);
@@ -83,6 +87,7 @@ public class WordLadderGUI extends JFrame implements ActionListener {
         checkBoxPanel.add(aStarCheckBox);
         inputPanel.add(checkBoxPanel, gbc);
 
+        // bagian button cari jalur
         JPanel buttonPanel = new JPanel();
         findButton = new JButton("Cari Jalur");
         findButton.setFont(new Font("SansSerif", Font.BOLD, 14));
@@ -91,6 +96,7 @@ public class WordLadderGUI extends JFrame implements ActionListener {
         buttonPanel.setBackground(new Color(255, 192, 203));
         buttonPanel.setBorder(new EmptyBorder(0, 10, 10, 10));
 
+        // bagian result area
         JPanel mainPanel = new JPanel(new BorderLayout());
         mainPanel.setBackground(new Color(255, 192, 203)); 
         mainPanel.add(inputPanel, BorderLayout.NORTH);
@@ -118,16 +124,16 @@ public class WordLadderGUI extends JFrame implements ActionListener {
             // Memastikan panjang kedua kata sama
             if (start.length() != end.length()) {
                 JOptionPane.showMessageDialog(this, "Kata awal dan kata akhir harus memiliki panjang yang sama.");
-                return; // Menghentikan proses lebih lanjut jika panjang tidak sama
+                return; 
             }
 
             Set<String> words = loadDictionary("dictionary.txt");
 
+            // memastikan kata inputan tersedia di dictionary
             if (!words.contains(start)){
                 JOptionPane.showMessageDialog(this, "Kata awal tidak terdaftar dalam kamus.");
                 return; 
             }
-
             if (!words.contains(end)){
                 JOptionPane.showMessageDialog(this, "Kata akhir tidak terdaftar dalam kamus.");
                 return; 
@@ -135,6 +141,7 @@ public class WordLadderGUI extends JFrame implements ActionListener {
 
             resultArea.setText("");
 
+            // pemanggilan method sesuai pilihan algoritma
             long startTime, endTime;
             if (ucsCheckBox.isSelected()) {
                 resultArea.append("UCS:\n");
@@ -183,7 +190,8 @@ public class WordLadderGUI extends JFrame implements ActionListener {
             }
         }
     }
-
+    
+    // method untuk mengubah file txt dictionary menjadi HashSet
     public static Set<String> loadDictionary(String filename) {
         Set<String> dictionary = new HashSet<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
@@ -197,6 +205,7 @@ public class WordLadderGUI extends JFrame implements ActionListener {
         return dictionary;
     }
 
+    // method untuk mencetak hasil path
     public void printLadder(List<String> ladder) {
         if (ladder == null) {
             resultArea.append("Tidak ada jalur yang ditemukan.\n");
@@ -208,6 +217,7 @@ public class WordLadderGUI extends JFrame implements ActionListener {
         }
     }
 
+    // main
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             new WordLadderGUI().setVisible(true);

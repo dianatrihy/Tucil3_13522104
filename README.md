@@ -5,6 +5,7 @@
 * [General Info](#general-information)
 * [Technologies Used](#technologies-used)
 * [Features](#features)
+* [Screenshots](#screenshots)
 * [Setup](#setup)
 * [Usage](#usage)
 * [Acknowledgements](#acknowledgements)
@@ -17,14 +18,14 @@
 - java version "20.0.2"
 
 ## Features
-- User dapat memasukkan kata awal dan kata tujuan dalam lower case seluruhnya
+- User dapat memasukkan kata awal dan kata tujuan dalam bahasa Inggris
 - User dapat memilih metode algoritma apa saja yang akan dijalankan
 - User dapat memulai pencarian denga memencet tombol "cari jalur"
 - User dapat melihat hasil pencarian berdasarkan metode algoritma yang dipilih
 
 ## Screenshots
 ![Tampilan awal screenshot](./test/tampilan_awal.png)
-![Hasil pencarian screenshot](./test/Astar1.png)
+![Hasil pencarian screenshot](./test/test.png)
 
 ## Setup
 - Unduh dan install Java Development Kit (JDK) melalui situs resmi Oracle atau situs distribusi Java lainnya sesuai dengan sistem operasi Anda (Windows, macOS, atau Linux). Ikuti petunjuk instalasi yang disediakan.
@@ -34,7 +35,7 @@
 - Masuk ke dalam direktori "src"
 - Buka terminal 
 - Ketik `make run` untuk menjalankan program hingga muncul GUI program
-- Ketik `make class` untuk membersihkan file .class jika sudah tidak ingin menggunakan program
+- Ketik `make clean` untuk membersihkan file .class jika sudah tidak ingin menggunakan program
 
 ## Acknowledgements
 - Project ini dibuat berdasarkan spesifikasi yang terdapat pada (https://informatika.stei.itb.ac.id/~rinaldi.munir/Stmik/2023-2024/Tucil3-2024.pdf)

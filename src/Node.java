@@ -1,9 +1,11 @@
 import java.util.*;
 
 public class Node {
+    // atribut
     private String word;
     private Node parent;
 
+    // konstruktor
     public Node() {
         this.word = null;
         this.parent = null;
@@ -14,6 +16,7 @@ public class Node {
         this.parent = parent;
     } 
 
+    // getter method
     public String getWord(){
         return this.word;
     }

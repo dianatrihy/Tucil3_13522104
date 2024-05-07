@@ -1,15 +1,17 @@
 import java.util.*;
 
 public class GBFS extends Node {
+    // atribut
     private int heuristic;
 
+    // konstruktor
     public GBFS(String word, String end, GBFS parent) {
         super(word, parent);
         this.heuristic = getHeuristic(word, end);
     }
 
     public int getHeuristic(String current, String end) {
-        // Fungsi heuristik (jarak) antara kata saat ini dan kata akhir
+        // fungsi heuristik (jarak) antara kata saat ini dan kata akhir
         int count = 0;
         for (int i = 0; i < end.length(); i++) {
             if (end.charAt(i) != current.charAt(i)) {
@@ -20,17 +22,20 @@ public class GBFS extends Node {
     }
 
     public List<GBFS> getChildren(Set<String> dictionary, String end, Set<String> visited) {
+        // inisialisasi
         char[] chars = this.getWord().toCharArray();
         List<GBFS> children = new ArrayList<>();
+
+        // iterasi untuk setiap pengubahan huruf
         for (int i = 0; i < chars.length; i++) {
             char originalChar = chars[i];
             for (char c = 'a'; c <= 'z'; c++) {
                 if (c == originalChar) {
                     continue;
                 }
-
                 chars[i] = c;
                 String newWord = new String(chars);
+                // cek apakah valid dalam dictionary dan belum tercatat di visited
                 if (!visited.contains(newWord) && dictionary.contains(newWord)) {
                     GBFS newGBFS = new GBFS(newWord, end, this);
                     children.add(newGBFS);
@@ -42,9 +47,9 @@ public class GBFS extends Node {
         return children;
     }
 
+    // main method
     public Triple<List<String>, Integer, Integer> findGBFS(String endWord, Set<String> dictionary) {
-        // inisiasi PriorityQueue untuk menyimpan node berdasarkan cost terurut menaik
-        // inisiasi set untuk menyimpan node yang pernah terkunjungi
+        // inisialisasi antrian node (queue), node terkunjungi (visited), jumlah iterasi
         Queue<GBFS> queue = new PriorityQueue<GBFS>(Comparator.comparingInt(GBFS -> GBFS.heuristic));
         Set<String> visited = new HashSet<>();
         int iterations = 0;
@@ -53,6 +58,7 @@ public class GBFS extends Node {
         queue.offer(this);
         visited.add(this.getWord());
 
+        // looping hingga queue kosong atau node tujuan ditemukan
         while (!queue.isEmpty()) {
             iterations++;
             GBFS current = queue.poll();
@@ -65,5 +71,6 @@ public class GBFS extends Node {
         }
 
         return new Triple<>(null, visited.size(), iterations);
+        // output: path, jumlah simpul hidup, jumlah simpul ekspans (iterasi)
     }
 }
